@@ -12,21 +12,13 @@ if __name__ == "__main__": # Solo para que no ejecutes este archivo
     sys.exit()
 
 import pygame
-
 from pygame.locals import (K_ESCAPE, KEYDOWN, QUIT, K_SPACE, K_f)
-
 import random
-
 from elements.jorge import Player
-
 from elements.bug import Enemy
-
 from elements.wing import Wing
-
 from elements.extra_life import Extra_life
-
 import scenes.game_over as Fin
-
 
 def gameLoop():
     ''' iniciamos los modulos de pygame'''
