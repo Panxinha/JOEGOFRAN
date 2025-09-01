@@ -1,8 +1,3 @@
-"""
-Hola este es modulo Jorge,
-este modulo manejara la creacion y movimiento de Jorge
-"""
-
 if __name__ == "__main__": # Solo para que no ejecutes este archivo
     import sys
     print(
@@ -15,15 +10,12 @@ import pygame
 from pygame.locals import (
     K_w, K_s, K_a, K_d, RLEACCEL)
 import math
-
 from elements.projectile import Projectile
 
-
 JorgePNG = pygame.image.load('VJ-2-Honors/assets/jorge_zorro.png')
-JorgePNG_scaled = pygame.transform.scale(JorgePNG, (80, 80))
+JorgePNG_scaled = pygame.transform.scale(JorgePNG, (90, 90))
 
 class Player(pygame.sprite.Sprite):
-    
     def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT):
         super(Player, self).__init__()
         self.surf = JorgePNG_scaled
@@ -35,6 +27,7 @@ class Player(pygame.sprite.Sprite):
         self.last_shot=0
         self.projectiles = pygame.sprite.Group()
         self.vidas = 3
+        self.puntos = 0
         self.speed = 4
         self.shoot_cooldown = 0  # Tiempo restante del cooldown del disparo
         self.teleport_cooldown = 0  # Tiempo restante del cooldown del teleport
@@ -163,4 +156,3 @@ class Player(pygame.sprite.Sprite):
         self.shoot_cooldown = 0
         self.teleport_cooldown = 0
         #self.boss_collision_cooldown = 0
-

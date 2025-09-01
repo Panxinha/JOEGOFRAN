@@ -15,16 +15,16 @@ import pygame
 import random
 from pygame.locals import (RLEACCEL)
 #AKATSUKI:10
-pain_img   = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Pain.png'),(64, 64))
-itachi_img = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Itachi.png'),(64, 64))
-konan_img  = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Konan.png'),(64, 64))
-zetsu_img  = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Zetsu.png'),(64, 64))
-deidara_img= pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Deidara.png'),(64, 64))
-sasori_img = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Sasori.png'),(64, 64))
-hidan_img  = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Hidan.png'),(64, 64))
-kakuzu_img = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Kakuzu.png'),(64, 64))
-tobi_img   = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Tobi.png'),(64, 64))
-kisame_img = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Kisame.png'),(64, 64))
+pain_img   = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Pain.png'),(70, 70))
+itachi_img = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Itachi.png'),(70, 70))
+konan_img  = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Konan.png'),(70, 70))
+zetsu_img  = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Zetsu.png'),(70, 70))
+deidara_img= pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Deidara.png'),(70, 70))
+sasori_img = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Sasori.png'),(70, 70))
+hidan_img  = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Hidan.png'),(70, 70))
+kakuzu_img = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Kakuzu.png'),(70, 70))
+tobi_img   = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Tobi.png'),(70, 70))
+kisame_img = pygame.transform.scale(pygame.image.load('VJ-2-Honors/assets/Kisame.png'),(70, 70))
 class Enemy(pygame.sprite.Sprite):
     def __init__(self,img, SCREEN_WIDTH, SCREEN_HEIGHT):
         super(Enemy, self).__init__()
