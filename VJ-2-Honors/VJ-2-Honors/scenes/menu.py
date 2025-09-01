@@ -5,7 +5,6 @@ if __name__ == "__main__": # Solo para que no ejecutes este archivo
         * 3
     )
     sys.exit()
-    
 import pygame
 from pygame.locals import QUIT, MOUSEBUTTONDOWN
 #import scenes.game as GameScene
@@ -77,7 +76,7 @@ class Menu:
 
     def _help(self):
         # Muestra un pequeño “modal” con instrucciones sencillas
-        self._show_help_popup("- Para moverte utiliza WASD.\n- Para disparar debes hacer click izquierdo.\n- Tu objetivo es eliminar a los enemigos sin morir.\n- Presiona ESC para volver al menú.")
+        self._show_help_popup("- Para moverte utiliza WASD.\n- Para disparar debes hacer click izquierdo.\n- Tu objetivo es eliminar a los enemigos sin morir.\n- Presiona ESC para volver al menú.\n- Para teletransportarse selecciona la tecla 'T'.\n- Para hacer un super disparo selecciona la tecla de 'Espacio'.")
 
     def _quit(self):
         self.action = "quit"

@@ -12,39 +12,35 @@ if __name__ == "__main__": # Solo para que no ejecutes este archivo
     sys.exit()
 
 import pygame
-from pygame.locals import (K_ESCAPE, KEYDOWN, QUIT, K_SPACE, K_f)
+from pygame.locals import (K_ESCAPE, KEYDOWN, QUIT, K_SPACE, K_t)
 import random
 from elements.jorge import Player
-from elements.bug import Enemy
+from elements.Enemigos import enemyalea
 from elements.wing import Wing
 from elements.extra_life import Extra_life
 import scenes.game_over as Fin
 
 def gameLoop():
-    ''' iniciamos los modulos de pygame'''
-
     pygame.init()
-
-    ''' Creamos y editamos la ventana de pygame (escena) '''
-    ''' 1.-definir el tamaño de la ventana'''
+    pygame.mixer.init()
     SCREEN_WIDTH = 1000
     SCREEN_HEIGHT = 600
 
-    ''' 2.1- crear el objeto pantalla'''
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     background_image = pygame.image.load("VJ-2-Honors/assets/konoha1fin.png").convert()
 
-    '''2.2 creamos cursor para el mouse'''
     mira_imagen = pygame.image.load("VJ-2-Honors/assets/crosshair.png")
     mira_imagen = pygame.transform.scale(mira_imagen, (32, 32))
     pygame.mouse.set_visible(False)
-
-    ''' Preparamos el gameloop '''
-    ''' 1.- creamos el reloj del juego'''
-
     clock = pygame.time.Clock()
-    ''' 2.- generador de enemigos'''
-
+    #Musica de fondo
+    pygame.mixer.music.load("VJ-2-Honors/assets/Narutomusic.mp3")
+    pygame.mixer.music.set_volume(0.4)
+    pygame.mixer.music.play(-1)
+    disparo = pygame.mixer.Sound("VJ-2-Honors/assets/Disparo.mp3")
+    bomba = pygame.mixer.Sound("VJ-2-Honors/assets/Bomba.mp3")
+    #transport = pygame.mixer.Sound("VJ-2-Honors/assets/Transport.mp3")
+    #creamos evento donde añadimos los enemigos
     ADDENEMY = pygame.USEREVENT + 1
     pygame.time.set_timer(ADDENEMY, 600)
 
@@ -72,19 +68,21 @@ def gameLoop():
         
         for entity in all_sprites:
             screen.blit(entity.surf, entity.rect)
-        
-        # POR HACER (2.5): Pintar proyectiles en pantalla
+        # dibujar enemigos
+        for e in enemies:
+            screen.blit(e.surf, e.rect)
+        #dibujar proyectiles
         for projectile in player.projectiles:
             screen.blit(projectile.surf, projectile.rect)
-
-        
-        # POR HACER (2.5): Eliminar bug si colisiona con proyectil
+        #dibujar power ups
+        #for power_up in powerups:
+            #screen.blit(power_up.surf, power_up.rect)
+        # eliminar bug si colisiona con proyectil
         pygame.sprite.groupcollide(enemies, player.projectiles, True,True)
         
         pressed_keys = pygame.key.get_pressed()
         player.update(pressed_keys)
         enemies.update()
-        
         
         if pygame.sprite.spritecollideany(player, enemies):
             player.kill()
@@ -104,15 +102,17 @@ def gameLoop():
                 if event.key == K_ESCAPE:
                     running = False
 
-                
                 #super disparo
                 if event.key == K_SPACE:
-                    player.super_shoot()                
+                    player.super_shoot()
+                    disparo.play()      
+                    bomba.play()
 
                 #teletransporte
-                if event.key == K_f:
+                if event.key == K_t:
                     mouse_pos = pygame.mouse.get_pos()
                     player.teleport(mouse_pos)            
+                    #transport.play()
                 
 
                 # fue un click al cierre de la ventana? -> entonces terminamos
@@ -120,14 +120,12 @@ def gameLoop():
                 running = False
             
             elif event.type == ADDENEMY:
-                new_enemy = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT)
-                enemies.add(new_enemy)
-                all_sprites.add(new_enemy)
+                enemies.add(enemyalea(SCREEN_WIDTH, SCREEN_HEIGHT))
             
             # POR HACER (2.4): Agregar evento disparo proyectil
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 player.shoot(pygame.mouse.get_pos())
-
+                disparo.play()
             #powerup
             #elif event.type==ADDPOWERUP:
                 #wing = Wing(SCREEN_WIDTH, SCREEN_HEIGHT)                
@@ -141,10 +139,5 @@ def gameLoop():
                     #power_up=extra_life
                     #powerups.add(power_up)
                     #all_sprites.add(power_up)
-
-        
-
-
-
         clock.tick(60)
         
